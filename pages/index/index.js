@@ -15,7 +15,9 @@ Page({
       { name: '1', value: '单位专票' },
       { name: '2', value: '个人'},
      ],
-    radioCheckVal: 0
+    radioCheckVal: 0,
+    wx_host: 'https://dev.bookingyun.com/hotel_wx/rest/',
+    cm_host: 'https://dev.bookingyun.com/CenterMaster/'
   },
   //事件处理函数
   bindViewTap: function() {
@@ -98,6 +100,57 @@ Page({
     this.setData({
       radioCheckVal: e.detail.value
     })
-  }  
+  },
+ 
+  //获取手机号码
+  getPhoneNumberByEncryptedData: function getPhoneNumberByEncryptedData(parms, suss, fail) {
+    var data = {
+      url: data.wx_host + 'wxRest/getPhoneNumberByEncryptedData',
+      sName: 'wxRest/getPhoneNumberByEncryptedData',
+      text: '获取手机号码',
+      method: 'GET',
+      data: parms,
+      isLoading: false,
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      }
+    };
+    this.request(this, data, suss, fail);
+  },
+
+
+  //发送验证码
+  sendVerifyCode: function sendVerifyCode(parms, cb) {
+    wx.request({
+      url: this.data.cm_host + 'user/sendVerifyCode',
+      sName: 'user/sendVerifyCode',
+      text: '发送验证码',
+      method: 'GET',
+      data: parms,
+      isLoading: true,
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        return typeof cb == "function" && cb(res.data)
+      },
+      fail: function () {
+        return typeof cb == "function" && cb(false)
+      }
+    })
+  },
+
+  submit3: function () {
+    let that = this;
+    console.log(that);
+    console.log("kaishi" + that.data.cm_host);
+    that.sendVerifyCode("15820480843", function (res) {
+    
+      console.log(res);
+      
+    })
+
+  },
+  
 
 })
