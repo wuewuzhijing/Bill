@@ -7,7 +7,15 @@ Page({
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    info:"深圳城市客栈",
+    showModal: false,
+    items: [
+      {name: '0', value: '单位普票' },
+      { name: '1', value: '单位专票' },
+      { name: '2', value: '个人'},
+     ],
+    radioCheckVal: 0
   },
   //事件处理函数
   bindViewTap: function() {
@@ -50,5 +58,46 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
-  }
+  },
+  click:function(){
+    
+  },
+  submit: function () {
+    this.setData({
+      showModal: true
+    })
+  },
+
+  preventTouchMove: function () {
+
+  },
+
+
+  go: function () {
+    this.setData({
+      showModal: false
+    })
+  },
+  submit2: function(){
+    wx.showModal({
+      title: '提示',
+      content: '这是一个模态弹窗',
+      success: function (res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  },
+  radioChange:function(e){
+    console.log(e.detail.value);
+  },
+  radioCheckedChange: function (e) {
+    this.setData({
+      radioCheckVal: e.detail.value
+    })
+  }  
+
 })

@@ -1,13 +1,48 @@
-<!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <view class="usermotto">
+<!--index.wxml 测试代码类-->
+<view class="section">
+<view> 
+    <text catchtap="bindViewTap" class="index-hotel-name">{{info}}</text>
+ </view>
+  <!-- <view class="userinfo"> -->
+    <!-- <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button> -->
+    <!-- <block wx:else> -->
+      <!-- <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image> -->
+      <!-- <text class="userinfo-nickname">{{userInfo.nickName}}</text> -->
+    <!-- </block> -->
+  <!-- </view> -->
+
+
+  <!-- <view class="usermotto">
     <text class="user-motto">{{motto}}</text>
-  </view>
+  </view> -->
+
+  <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>   <!-- 为什么会隐藏 -->
+
+<!-- 如何让这个弹窗在任意页面都可以调用 ， 这种方法是否可行？ -->
+<view class="modalDlg" wx:if="{{showModal}}">  
+    <!-- <image src="/figures/logo-smile.png"/> -->
+    <text class="index_dialog_text">前台领取</text> 
+    <!-- 为什么不能加 </hr> -->
+    <text class="index_dialog_text">邮寄到家</text>
+    <text class="index_dialog_text">电子发票</text>
+    <button bindtap="go" style='margin-top: 20px;'>点我可以关掉对话框</button>
+    <!-- 行内样式为什么没有代码提示 -->
+</view>
+
+<button bindtap="submit">点我弹窗</button>
+<button bindtap="submit2">系统弹窗</button>
+
+<radio-group class="radio-group" bindchange="radioCheckedChange" >
+  <label class="{{radioCheckVal==0?'active':''}}" wx:for='{{items}}'>
+    <radio value='{{item.name}}' checked='{{item.checked}}' hidden="true"/>
+    {{item.value}}
+  </label>
+</radio-group>
+<!-- 大小写不做区分吗 ，更简单的注释方法-->
+<radio-group class="radio-group" bindchange="radioChange"> 
+  <label class="radio" wx:for="{{items}}">
+    <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+  </label>
+</radio-group>
+  
 </view>
