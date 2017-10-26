@@ -1,64 +1,102 @@
 <!--index.wxml 测试代码类-->
 <view class="section">
-<view> 
-    <text catchtap="bindViewTap" class="index-hotel-name">{{info}}</text>
- </view>
-  <!-- <view class="userinfo"> -->
-    <!-- <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button> -->
-    <!-- <block wx:else> -->
-      <!-- <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image> -->
-      <!-- <text class="userinfo-nickname">{{userInfo.nickName}}</text> -->
-    <!-- </block> -->
-  <!-- </view> -->
+  <view> 
+      <text catchtap="bindViewTap" class="index-hotel-name">{{info}}</text>
+  </view>
+    <!-- <view class="userinfo"> -->
+      <!-- <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button> -->
+      <!-- <block wx:else> -->
+        <!-- <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image> -->
+        <!-- <text class="userinfo-nickname">{{userInfo.nickName}}</text> -->
+      <!-- </block> -->
+    <!-- </view> -->
 
 
-  <!-- <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view> -->
+    <!-- <view class="usermotto">
+      <text class="user-motto">{{motto}}</text>
+    </view> -->
 
-  <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>   <!-- 为什么会隐藏 -->
+    <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view> 
 
-<!-- 如何让这个弹窗在任意页面都可以调用 ， 这种方法是否可行？ -->
-<view class="modalDlg" wx:if="{{showModal}}"  style='background:red;'>  
-    <!-- <image src="/figures/logo-smile.png"/> -->
-    <text class="index_dialog_text">前台领取</text> 
-    <text class="index_dialog_text">邮寄到家</text>
-    <text class="index_dialog_text">电子发票</text>
-    <button bindtap="go" style='margin-top: 20px;'>点我可以关掉对话框</button>
-    <!-- 行内样式没有代码提示，不要使用行内样式，class名有时候也会没有提示，反应慢的问题-->
-</view>
+  <!-- 如何让这个弹窗在任意页面都可以调用 ， 这种方法是否可行？ -->
+  <view class="modalDlg" wx:if="{{showModal}}">  
+      <text class="index_dialog_text">前台领取</text> 
+      <text class="index_dialog_text">邮寄到家</text>
+      <text class="index_dialog_text">电子发票</text>
+      <button bindtap="go" style='margin-top: 20px;'>点我可以关掉对话框</button>
+      
+  </view>
 
-<button bindtap="submit">点我弹窗</button>
-<button bindtap="submit2">系统弹窗</button>
-<button bindtap="submit3">发送验证码</button>
+  <button bindtap="submit">点我弹窗</button>
+  <button bindtap="submit3">发送验证码-请求测试</button>
 
-<radio-group class="radio-group" bindchange="radioCheckedChange" >
-  <!-- <label class="{{radioCheckVal==0?'active':''}}" wx:for='{{items}}'>
-    <radio value='{{item.name}}' checked='{{item.checked}}' hidden="true"/>
-    {{item.value}}
-  </label> -->
-   <view class="flex_item">  
-        <label class="{{radioCheckVal==0?'active':''}}">单位普票  
-          <radio value="0"   hidden="true"></radio>  
-        </label>  
-      </view>  
+  <radio-group class="radio-group" bindchange="radioCheckedChange" >
       <view class="flex_item">  
-        <label class="{{radioCheckVal==1?'active':''}}"> 单位专票  
-          <radio  value="1"  hidden="true"></radio>  
-        </label>  
-      </view>  
-      <view class="flex_item">  
-        <label class="{{radioCheckVal==2?'active':''}}"> 个人  
-          <radio value="2" hidden="true"></radio>  
-        </label>    
-      </view>  
-</radio-group>
+          <label class="{{radioCheckVal==0?'active':'active2'}}">单位普票  
+            <radio value="0"   hidden="true"></radio>  
+          </label>  
+        </view>  
+        <view class="flex_item">  
+          <label class="{{radioCheckVal==1?'active':'active2'}}"> 单位专票  
+            <radio  value="1"  hidden="true"></radio>  
+          </label>  
+        </view>  
+        <view class="flex_item">  
+          <label class="{{radioCheckVal==2?'active':'active2'}}"> 个人  
+            <radio value="2" hidden="true"></radio>  
+          </label>    
+        </view>    
+  </radio-group>
+
+  <form bindsubmit="formSubmit">
+    <view class="weui-cells weui-cells_after-title" >
+      <view class="weui-cell weui-cell_input" >
+        <view class="weui-cell__hd">
+            <view class="weui-label">发票抬头</view>
+        </view>
+        <view class="weui-cell__bd">
+            <input class="weui-input" type="text" name="name" value="{{name}}" placeholder="请输入发票抬头"/>
+        </view>
+      </view>
+
+      <view class="weui-cell weui-cell_input" wx:if="{{type == 0}}">
+        <view class="weui-cell__hd">
+          <view class="weui-label">企业税号</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" name="phone" maxlength="11" value="{{phone}}" type="number" placeholder="请输入企业税号"/>
+        </view>
+      </view>
+    </view>
+
+    <view class="weui-cell weui-cell_input" wx:if="{{type == 1}}">
+      <view class="weui-cell__hd">
+        <view class="weui-label">公司电话</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" name="price" value="{{price}}" placeholder="请输入公司电话"/>
+      </view>
+    </view>
+    <view class="weui-cell weui-cell_input" wx:if="{{type == 1}}">
+      <view class="weui-cell__hd">
+        <view class="weui-label">公司地址</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" name="price" value="{{price}}" placeholder="请输入公司地址"/>
+      </view>
+    </view>
+
+    <view class="weui-cell weui-cell_input" wx:if="{{type == 2}}">
+      <view class="weui-cell__hd">
+        <view class="weui-label">电子邮箱</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" name="price" value="{{price}}" placeholder="请输入电子邮箱"/>
+      </view>
+    </view>
+    
+
+  </form>
 
 
-<radio-group class="radio-group" bindchange="radioChange"> 
-  <label class="radio" wx:for="{{items}}" wx:key="unique">
-    <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
-  </label>
-</radio-group>
-  
 </view>

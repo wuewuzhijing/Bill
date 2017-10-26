@@ -16,6 +16,7 @@ Page({
       { name: '2', value: '个人'},
      ],
     radioCheckVal: 0,
+    type:1,
     wx_host: 'https://dev.bookingyun.com/hotel_wx/rest/',
     cm_host: 'https://dev.bookingyun.com/CenterMaster/'
   },
@@ -61,9 +62,7 @@ Page({
       hasUserInfo: true
     })
   },
-  click:function(){
-    
-  },
+
   submit: function () {
     this.setData({
       showModal: true
@@ -80,44 +79,17 @@ Page({
       showModal: false
     })
   },
-  submit2: function(){
-    wx.showModal({
-      title: '提示',
-      content: '这是一个模态弹窗',
-      success: function (res) {
-        if (res.confirm) {
-          console.log('用户点击确定')
-        } else if (res.cancel) {
-          console.log('用户点击取消')
-        }
-      }
-    })
-  },
-  radioChange:function(e){
+
+ radioChange:function(e){
     console.log(e.detail.value);
   },
   radioCheckedChange: function (e) {
+    console.log(e.detail.value);
     this.setData({
-      radioCheckVal: e.detail.value
+      radioCheckVal: e.detail.value,
+      type: e.detail.value
     })
   },
- 
-  //获取手机号码
-  getPhoneNumberByEncryptedData: function getPhoneNumberByEncryptedData(parms, suss, fail) {
-    var data = {
-      url: data.wx_host + 'wxRest/getPhoneNumberByEncryptedData',
-      sName: 'wxRest/getPhoneNumberByEncryptedData',
-      text: '获取手机号码',
-      method: 'GET',
-      data: parms,
-      isLoading: false,
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      }
-    };
-    this.request(this, data, suss, fail);
-  },
-
 
   //发送验证码
   sendVerifyCode: function sendVerifyCode(parms, cb) {
@@ -144,10 +116,14 @@ Page({
     let that = this;
     console.log(that);
     console.log("kaishi" + that.data.cm_host);
-    that.sendVerifyCode("15820480843", function (res) {
-    
+    that.sendVerifyCode({ 'mobile': "15820480843"}, function (res) {
       console.log(res);
-      
+      wx.showToast({
+        title: '成功',
+        icon: 'loading',
+        duration: 2000
+      })
+
     })
 
   },
