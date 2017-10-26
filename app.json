@@ -1,12 +1,22 @@
 {
   "pages":[
+    "pages/addTitle/addTitle",
     "pages/index/index",
     "pages/logs/logs"
+    
   ],
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "快捷开票",
     "navigationBarTextStyle":"black"
-  }
+  },
+
+  "networkTimeout": {
+    "request": 30000,
+    "connectSocket": 30000,
+    "uploadFile": 30000,
+    "downloadFile": 30000
+  },
+  "debug": true
 }

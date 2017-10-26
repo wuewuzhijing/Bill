@@ -1,5 +1,5 @@
 <!--index.wxml 测试代码类-->
-<view class="section">
+<view class="container">
   <view> 
       <text catchtap="bindViewTap" class="index-hotel-name">{{info}}</text>
   </view>
