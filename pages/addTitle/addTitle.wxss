@@ -1,2 +1,89 @@
 /* pages/addTitle/addTitle.wxss */
 @import "/wxSearch/wxSearch.wxss";
+
+.top_title{
+  font-size: 26rpx;
+  background-color: #fff;
+  padding: 20rpx;
+}
+
+
+radio-group{  
+  display: flex;  
+  width: 100%;  
+  border-bottom: 1px solid #eee;   
+  padding: 20rpx 0;
+}  
+
+.flex_item{  
+  flex: 1;   
+  text-align: center;  
+}  
+.flex_item label{  
+  font-size: 26rpx;
+  width: 180rpx;
+  padding: 5rpx 0;  
+  display: inline-block;  
+}  
+
+.flex_item label.active2{  
+  color: gray;  
+  border: 1px solid gray;  
+  border-radius: 10rpx;
+    
+}
+
+.flex_item label.active{  
+  color: green;  
+  border: 1px solid green;  
+  border-radius: 10rpx;
+    
+}  
+
+
+.addTitle-section{
+  background-color: #fff;
+  padding: 10rpx 0;
+  border: 1px #eee solid;
+  margin-top: 20rpx;
+}
+
+.addTitle-pancel{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 20rpx;
+  padding-right: 10rpx;
+  background-color: #fff;
+  border-bottom:1px #eee solid;
+}
+
+.addTitle-pancelNoBoder{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 20rpx;
+  padding-right: 10rpx;
+  background-color: #fff;
+}
+
+.addTitle-text{
+ width: 150rpx;
+}
+
+.addTitle-input{
+  flex: 2; 
+  padding: 10rpx 20rpx;
+  font-size: 30rpx;
+}
+.addTitle-button{
+  flex: 1;
+  font-size: 26rpx;
+  border-left:1rpx solid #e2dfdf;
+  padding-left:20rpx;
+  color: green;
+}
+
+.addTitle_commit{
+  margin: 40rpx;
+}

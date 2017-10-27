@@ -30,7 +30,7 @@
   <button bindtap="submit">点我弹窗</button>
   <button bindtap="submit3">发送验证码-请求测试</button>
 
-  <radio-group class="radio-group" bindchange="radioCheckedChange" >
+  <!-- <radio-group class="radio-group" bindchange="radioCheckedChange" >
       <view class="flex_item">  
           <label class="{{radioCheckVal==0?'active':'active2'}}">单位普票  
             <radio value="0"   hidden="true"></radio>  
@@ -46,7 +46,7 @@
             <radio value="2" hidden="true"></radio>  
           </label>    
         </view>    
-  </radio-group>
+  </radio-group> -->
 
   <form bindsubmit="formSubmit">
     <view class="weui-cells weui-cells_after-title" >
