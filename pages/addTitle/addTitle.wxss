@@ -84,6 +84,3 @@ radio-group{
   color: green;
 }
 
-.addTitle_commit{
-  margin: 40rpx;
-}

@@ -1,0 +1,21 @@
+/* pages/titleList/titleList.wxss */
+
+.list_item{
+  display: flex;
+  flex-direction: column;
+  margin-left: 20rpx;
+  border-bottom: 1px #eee solid;
+  padding: 10rpx 0;
+}
+
+.list_item text:first-child{
+  font-size: 30rpx;
+}
+
+.list_item text:last-child{
+  font-size: 26rpx;
+}
+
+.list_item:last-child{
+  border: none
+}

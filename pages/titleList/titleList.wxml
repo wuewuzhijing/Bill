@@ -1,0 +1,15 @@
+<!--pages/titleList/titleList.wxml-->
+<view class='container'>
+
+  <view style='margin-top: 20rpx;background-color: #fff'>
+
+    <view class='list_item' wx:for="{{list_title}}" > 
+      <text>{{item.count}} </text>
+      <text>{{item.name}}</text>
+    </view>
+  </view>
+
+  <button class="conmm_button" type="primary" bindtap="importTitle" >导入微信抬头</button>
+  <button class="conmm_button2" bindtap="addTitle" >新增抬头</button>
+
+</view>

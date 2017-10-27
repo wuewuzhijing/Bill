@@ -1,5 +1,6 @@
 {
   "pages":[
+    "pages/titleList/titleList",
     "pages/addTitle/addTitle",
     "pages/index/index",
     "pages/logs/logs"

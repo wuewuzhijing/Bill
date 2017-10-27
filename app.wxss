@@ -39,6 +39,14 @@ page {
   color: #333;
 }
 
+.conmm_button{
+  margin: 40rpx;
+}
+
+.conmm_button2{
+  margin: 0 40rpx;
+}
+
 
 .little_app_version {
   position: fixed;

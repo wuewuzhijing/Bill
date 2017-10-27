@@ -101,7 +101,7 @@ Page({
 
   wxSearchFn:function(){
     wx.navigateTo({
-      url: '../index/index'
+      url: '../titleList/titleList'
     })
   },
   
