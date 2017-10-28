@@ -6,17 +6,17 @@ Page({
    */
   data: {
     list_title: [{
-      name: '应季鲜果',
-      count: "哈哈"
+      name: '北京纵横时光信息技术有限公司南宁分公司',
+      count: "增值税专用发票"
     }, {
-      name: '精致糕点',
-      count: "ehheeh"
+        name: '北京纵横时光信息技术有限公司南宁分公司',
+        count: "增值税专用发票"
     }, {
-      name: '全球美食烘培原料',
-      count: "dfeij"
+        name: '北京纵横时光信息技术有限公司南宁分公司',
+        count: "增值税专用发票"
     }, {
-      name: '无辣不欢生猛海鲜',
-      count: "jiji"
+        name: '北京纵横时光信息技术有限公司南宁分公司',
+        count: "增值税专用发票"
     }]
   },
 
@@ -79,7 +79,10 @@ Page({
   importTitle:function(){
     wx.chooseInvoiceTitle({
       success(res) {
-        console.log(res)
+        let info = JSON.stringify(res);
+        wx.navigateTo({
+          url: '../addTitle/addTitle?info=' + info
+        })
       }
     })
   },

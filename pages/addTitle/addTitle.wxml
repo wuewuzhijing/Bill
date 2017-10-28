@@ -8,9 +8,7 @@
     <text >酒店名称</text>
   </view>
 
-
  <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{errorMsg}}</view>
-
 
 <form bindsubmit="formSubmit">
   <view bindtap="clearMessage">
@@ -27,7 +25,7 @@
           </label>  
         </view>  
         <view class="flex_item">  
-          <label class="{{radioCheck==2?'active':'active2'}}"> 个人  
+          <label class="{{radioCheck==2?'active':'active2'}}"> 个人/机构  
             <radio value="2" hidden="true"></radio>  
           </label>    
         </view>    
@@ -35,56 +33,56 @@
 
       <view class="{{type==2?'addTitle-pancelNoBoder':'addTitle-pancel'}}">
         <text class='conmm_text addTitle-text'>发票抬头</text>
-        <input bindinput="wxSearchInput" bindfocus="wxSerchFocus" name="headName" bindblur="wxSearchBlur"                  class="addTitle-input" placeholder="单位/企业名称" />
+        <input bindinput="wxSearchInput" bindfocus="wxSerchFocus" name="headName" bindblur="wxSearchBlur"                  class="addTitle-input" placeholder-class="psection" placeholder="单位/企业名称" />
         <!-- <button class="wxSearch-button" bindtap="wxSearchFn" size="mini" plain="true">导入微信抬头</button> -->
-        <text class="addTitle-button" bindtap="wxSearchFn" >导入微信抬头</text>
+        <text class="addTitle-button" bindtap="wxSearchFn" >导入抬头</text>
       </view>
 
       <view class="{{type==0?'addTitle-pancelNoBoder':'addTitle-pancel'}}" wx:if="{{type != 2}}">
         <text class='conmm_text addTitle-text'>企业税号</text>
-        <input name="taxNo"  class="addTitle-input" placeholder="15-20位企业纳税识别号" />
+        <input  name="taxNo" placeholder-class="psection" class="addTitle-input" placeholder="15-20位企业纳税识别号" />
       </view>
       
       <view class="addTitle-pancel" wx:if="{{type == 1}}">
         <text class='conmm_text addTitle-text'>公司地址</text>
-        <input value="{{tfn}}"  class="addTitle-input" placeholder="公司注册地址" />
+        <input value="{{tfn}}"  class="addTitle-input" placeholder-class="psection" placeholder="公司注册地址" />
       </view>
 
       <view class="addTitle-pancel" wx:if="{{type == 1}}">
         <text class='conmm_text addTitle-text'>公司电话</text>
-        <input value="{{tfn}}"  class="addTitle-input" placeholder="公司电话" />
+        <input value="{{tfn}}"  class="addTitle-input" placeholder-class="psection" placeholder="公司电话" />
       </view>
 
       <view class="addTitle-pancel" wx:if="{{type == 1}}">
         <text class='conmm_text addTitle-text'>开户银行</text>
-        <input value="{{tfn}}"  class="addTitle-input" placeholder="请输入公司开户银行" />
+        <input value="{{tfn}}"  class="addTitle-input" placeholder-class="psection" placeholder="请输入公司开户银行" />
       </view>
 
       <view class="addTitle-pancelNoBoder" wx:if="{{type == 1}}">
         <text class='conmm_text addTitle-text'>银行账户</text>
-        <input value="{{tfn}}"  class="addTitle-input" placeholder="请输入开户公司开户账户" />
+        <input value="{{tfn}}"  class="addTitle-input"  placeholder-class="psection" placeholder="请输入开户公司开户账户" />
       </view>
     </view>
 
-    <view class="addTitle-section">
-      <view class="addTitle-pancel" >
+    <view class="addTitle-section" >
+      <view class="addTitle-pancel"  class="{{type!=1?'addTitle-pancelNoBoder':'addTitle-pancel'}}">
         <text class='conmm_text addTitle-text'>房间号</text>
-        <input  name="roomNum" class="addTitle-input" placeholder="请输入房间号" />
+        <input  name="roomNum" class="addTitle-input" placeholder-class="psection" placeholder="请输入房间号" />
       </view>
 
-      <view class="addTitle-pancel" class="{{type==0?'addTitle-pancelNoBoder':'addTitle-pancel'}}">
+      <view class="addTitle-pancel" class="{{type==0?'addTitle-pancelNoBoder':'addTitle-pancel'}}" hidden='true'>
         <text class='conmm_text addTitle-text'>领取方式</text>
-        <input name="getTtpe"  class="addTitle-input" placeholder="邮寄到家" />
+        <input name="getTtpe"  class="addTitle-input" placeholder-class="psection" placeholder="邮寄到家" />
       </view>
 
       <view class="addTitle-pancelNoBoder" wx:if="{{type == 1}}">
         <text class='conmm_text addTitle-text'>领取地址</text>
-        <input name="getAddress"  class="addTitle-input" placeholder="添加地址" />
+        <input name="getAddress"  class="addTitle-input" placeholder-class="psection" placeholder="添加地址" />
       </view>
 
-      <view class="addTitle-pancelNoBoder" wx:if="{{type == 2}}">
+      <view class="addTitle-pancelNoBoder" wx:if="{{type == 2}}" hidden='true'>
         <text class='conmm_text addTitle-text'>电子邮箱</text>
-        <input name="maill"   class="addTitle-input" placeholder="请输入邮箱" />
+        <input name="maill"   class="addTitle-input" placeholder-class="psection" placeholder="请输入邮箱" />
       </view>
     </view>
   </view>
@@ -98,4 +96,7 @@
       <view class="wxSearchMindKeyItem" bindtap="wxSearchKeyTap" data-key="{{item}}">{{item}}</view>
   </block>
 
+
+
 </view>
+

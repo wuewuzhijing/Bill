@@ -167,10 +167,10 @@ icon {
   top: 0;
   left: 0;
   right: 0;
-  padding: 5px;
   font-size: 14px;
   text-align: center;
   color: #FFFFFF;
+  padding: 5px 0;
   z-index: 5000;
   word-wrap: break-word;
   word-break: break-all;

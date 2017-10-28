@@ -4,8 +4,8 @@
   <view style='margin-top: 20rpx;background-color: #fff'>
 
     <view class='list_item' wx:for="{{list_title}}" > 
-      <text>{{item.count}} </text>
       <text>{{item.name}}</text>
+      <text>{{item.count}} </text>
     </view>
   </view>
 

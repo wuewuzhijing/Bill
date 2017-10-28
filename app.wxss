@@ -35,8 +35,8 @@ page {
 }
 
 .conmm_text{
-  font-size: 30rpx;
-  color: #333;
+  font-size: 28rpx;
+  color: #999;
 }
 
 .conmm_button{

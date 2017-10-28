@@ -10,6 +10,8 @@ Page({
     radioCheck:0,
     type:0,
 
+    info:{},
+
     userId:"",
     headType: 1,
     headName: "666",
@@ -25,14 +27,19 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
     var that = this
+    if (false){
+      var info = JSON.parse(options.info);
+      console.log("取到的对象 " + info.telephone)
+      this.setData({
+        info: cdInfo
+      });
+    }
 
     //初始化的时候渲染wxSearchdata
     WxSearch.init(that, 43, ['weappdev', '小程序', 'wxParse', 'wxSearch', 'wxNotification']);
     WxSearch.initMindKeys(['weappdev.com', '微信小程序开发', '微信开发', '微信小程序', 'weappdev', '小程序', 'wxParse', 'wxSearch', 'wxNotification']);
-    this.setData({
-      //  怎么设置标题的文字
-    })
   },
 
   /**
@@ -99,24 +106,25 @@ Page({
     WxSearch.wxSearchBlur(e, that);
   },
 
-  wxSearchFn:function(){
-    wx.navigateTo({
-      url: '../titleList/titleList'
-    })
-  },
-  
   clearMessage:function(){
     var that = this;
     console.log(123)
     util.clearError(that);
   },
 
+  wxSearchFn: function () {
+    wx.navigateTo({
+      url: '../titleList/titleList'
+    })
+  },
+
   formSubmit(e){
     var data = e.detail.value;
     var that = this;
-    data.headType="1";
+   
     data.userId = "567";
     data.invoiceType = "1";
+    data.hotelId = "B335C79F2B7748A49DCF962BDBC8D220";
 
     console.log(data);
 
@@ -126,21 +134,29 @@ Page({
     //   return false;
     // }
 
+    if (data.headName == '') {
+      util.isError('请输抬头', that);
+      return false;
+    }
 
     if (that.data.type == 0){
-      if (data.headName == '') {
-        util.isError('请输抬头', that);
-        return false;
-      }
       if (data.taxNo == '') {
         util.isError('请输入税号', that);
         return false;
       }
+
+      data.headType = "1";
       
     } else if (that.data.type == 1){
+      if (data.taxNo == '') {
+        util.isError('请输入税号', that);
+        return false;
+      }
+
+      data.headType = "1";
 
     } else if (that.data.type == 2){
-
+      data.headType = "0";
     }
 
     console.log("开始提交");
