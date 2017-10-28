@@ -22,7 +22,7 @@ App({
                     // 可以将 res 发送给后台解码出 unionId
                     this.globalData.userInfo = res.userInfo
                     this.globalData.getOpnidParms.encryptedData = res.encryptedData;
-                    this.globalData.getOpnidParms.iv = res.encryptedData;
+                    this.globalData.getOpnidParms.iv = res.iv;
 
                     let info = JSON.stringify(this.globalData);
                     console.log(info)
