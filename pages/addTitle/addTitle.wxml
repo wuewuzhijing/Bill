@@ -33,34 +33,34 @@
 
       <view class="{{type==2?'addTitle-pancelNoBoder':'addTitle-pancel'}}">
         <text class='conmm_text addTitle-text'>发票抬头</text>
-        <input bindinput="wxSearchInput" bindfocus="wxSerchFocus" name="headName" bindblur="wxSearchBlur"                  class="addTitle-input" placeholder-class="psection" placeholder="单位/企业名称" />
+        <input bindinput="wxSearchInput" bindfocus="wxSerchFocus" name="headName" value="{{headName}}" bindblur="wxSearchBlur"                  class="addTitle-input" placeholder-class="psection" placeholder="单位/企业名称" />
         <!-- <button class="wxSearch-button" bindtap="wxSearchFn" size="mini" plain="true">导入微信抬头</button> -->
         <text class="addTitle-button" bindtap="wxSearchFn" >导入抬头</text>
       </view>
 
       <view class="{{type==0?'addTitle-pancelNoBoder':'addTitle-pancel'}}" wx:if="{{type != 2}}">
         <text class='conmm_text addTitle-text'>企业税号</text>
-        <input  name="taxNo" placeholder-class="psection" class="addTitle-input" placeholder="15-20位企业纳税识别号" />
+        <input  name="taxNo" value="{{taxNo}}" placeholder-class="psection" class="addTitle-input" placeholder="15-20位企业纳税识别号" />
       </view>
       
       <view class="addTitle-pancel" wx:if="{{type == 1}}">
         <text class='conmm_text addTitle-text'>公司地址</text>
-        <input value="{{tfn}}"  class="addTitle-input" placeholder-class="psection" placeholder="公司注册地址" />
+        <input name="address" value="{{address}}"  class="addTitle-input" placeholder-class="psection" placeholder="公司注册地址" />
       </view>
 
       <view class="addTitle-pancel" wx:if="{{type == 1}}">
         <text class='conmm_text addTitle-text'>公司电话</text>
-        <input value="{{tfn}}"  class="addTitle-input" placeholder-class="psection" placeholder="公司电话" />
+        <input name="telephone" value="{{telephone}}"  class="addTitle-input" placeholder-class="psection" placeholder="公司电话" />
       </view>
 
       <view class="addTitle-pancel" wx:if="{{type == 1}}">
         <text class='conmm_text addTitle-text'>开户银行</text>
-        <input value="{{tfn}}"  class="addTitle-input" placeholder-class="psection" placeholder="请输入公司开户银行" />
+        <input name="bankName" value="{{bankName}}"  class="addTitle-input" placeholder-class="psection" placeholder="请输入公司开户银行" />
       </view>
 
       <view class="addTitle-pancelNoBoder" wx:if="{{type == 1}}">
         <text class='conmm_text addTitle-text'>银行账户</text>
-        <input value="{{tfn}}"  class="addTitle-input"  placeholder-class="psection" placeholder="请输入开户公司开户账户" />
+        <input name="bankAccount" value="{{bankAccount}}"  class="addTitle-input"  placeholder-class="psection" placeholder="请输入开户公司开户账户" />
       </view>
     </view>
 

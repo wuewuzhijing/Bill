@@ -44,7 +44,7 @@ page {
 }
 
 .conmm_button2{
-  margin: 0 40rpx;
+  margin:0 40rpx 50rpx ;
 }
 
 

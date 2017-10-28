@@ -14,7 +14,7 @@ Page({
 
     userId:"",
     headType: 1,
-    headName: "666",
+    headName: "",
     invoiceType: 1,
     taxNo: "",
     address: "",
@@ -29,11 +29,17 @@ Page({
   onLoad: function (options) {
 
     var that = this
-    if (false){
+
+    if (options.info){
       var info = JSON.parse(options.info);
       console.log("取到的对象 " + info.telephone)
       this.setData({
-        info: cdInfo
+        headName: info.title,
+        taxNo:info.taxNumber,
+        address:info.companyAddress,
+        telephone: info.telephone,
+        bankName: info.bankName,
+        bankAccount: info.bankAccount,   
       });
     }
 
@@ -125,6 +131,7 @@ Page({
     data.userId = "567";
     data.invoiceType = "1";
     data.hotelId = "B335C79F2B7748A49DCF962BDBC8D220";
+    data.reciveWay = "1";
 
     console.log(data);
 
@@ -160,18 +167,13 @@ Page({
     }
 
     console.log("开始提交");
-    util.getQuery('invoice/addInvoiceHead' , data , "加载中" , function success(res){
-      if(res == false){
-        console.log(res.data.returnmessage);
-      }else{
-        console.log(res);
-        wx.showToast({
-          title: '提交成功',
-          icon: 'success',
-          duration: 2000
-        })
-      }
-      
+    util.getQuery('invoice/intentInvoice' , data , "加载中" , function success(res){
+      console.log(res);
+      wx.showToast({
+        title: '提交成功',
+        icon: 'success',
+        duration: 2000
+      })
     },function fail(res){
       // util.showToastErr(res.data.returnmessage);
       console.log(res);
