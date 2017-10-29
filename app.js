@@ -2,7 +2,7 @@
 var util = require("utils/util.js")
 App({
   onLaunch: function () {
-    var that = this;
+    let that = this;
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
@@ -10,7 +10,7 @@ App({
     // 登录
     wx.login({
       success: res => {
-        this.globalData.getOpnidParms.jsCode = res.code;
+        this.globalData.openidParms.jsCode = res.code;
         if (res.code) {
           // 获取用户信息
           wx.getSetting({
@@ -21,13 +21,13 @@ App({
                   success: res => {
                     // 可以将 res 发送给后台解码出 unionId
                     this.globalData.userInfo = res.userInfo
-                    this.globalData.getOpnidParms.encryptedData = res.encryptedData;
-                    this.globalData.getOpnidParms.iv = res.iv;
+                    this.globalData.openidParms.encryptedData = res.encryptedData;
+                    this.globalData.openidParms.iv = res.iv;
 
                     let info = JSON.stringify(this.globalData);
                     console.log(info)
 
-                    this.getOpenId(this.globalData.getOpnidParms, that);
+                    this.getOpenId(this.globalData.openidParms);
 
                     // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
                     // 所以此处加入 callback 以防止这种情况
@@ -49,10 +49,13 @@ App({
   },
 
   //获取opind
-  getOpenId: function (parms,that){
+  getOpenId: function (parms){
+    let that = this;
+    
+    console.log(that);
     wx.showLoading({
       title: "正在登录",
-    })
+    });
 
     wx.request({
       url: "https://dev.bookingyun.com/hotel_wx/rest/wxRest/getSNSUserInfoByEncryptedData",
@@ -67,64 +70,67 @@ App({
         console.log("获取openid成功" + res.data.returnMessage)
         if (res.data.openId){
           //获取用户的抬头列表 ， 如果有数据打开抬头列表页，没有数据就进入添加抬头页
-          
-         
         }
-
-        var userid = { userId:"567"};
+        // var userid = { userId: "567" };
         // that.getUserTitleList(userid);
-        console.log("开始获取title列表");
-        util.getQuery('invoice/getUserInvoiceHeads', userid , "加载中", function success(res) {
-          let list = JSON.stringify(res.data.list);
-          console.log(list);
-          if (list && list.length > 0){
-            wx.redirectTo({
-              url: '../titleList/titleList?list=' + list
-            })
-          }else{
-            wx.redirectTo({
-              url: '../addTitle/addTitle'
-            })
-          }
-          
-
-        }, function fail(res) {
-          // util.showToastErr(res.data.returnmessage);
-          console.log("失败");
-          
-        })
-
+        that.getUserId(res);
       },
       fail: function () {
-          wx.hideLoading();
-          console.log("获取openid失败")
+        wx.hideLoading();
+        console.log("获取openid失败")
+      }
+    })
+  },
+
+//获取userid
+  getUserId: function (res){
+    var that = this;
+    wx.request({
+      url: "https://dev.bookingyun.com/CenterMaster/user/getUserByInvoiceOpenId",
+      method: 'GET',
+      data: { openIdInvoiceLittleApp: res.data.openId, nickname: res.data.nickname, avatar: res.data.avatarUrl},
+      isLoading: true,
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        console.log("获取userid成功" + res.data.userId)
+        if (res.data.userId) {
+          //获取用户的抬头列表 ， 如果有数据打开抬头列表页，没有数据就进入添加抬头页
+          // this.globalData.userInfo.userId = res.data.userId
+          that.globalData.userInfo.userId = "567"
+        }
+        var userid = { userId: "567" };
+        that.getUserTitleList(that.globalData.userInfo.userId );
+      },
+      fail: function () {
+        console.log("获取openid失败")
       }
     })
   },
 
   //获取用户的抬头列表
   getUserTitleList:function(userid){
-    console.log("开始获取title列表");
-    util.getQuery('invoice/getUserInvoiceHeads', userid, "加载中", function success(res) {
-      console.log(res);
-      wx.showToast({
-        title: '提交成功',
-        icon: 'success',
-        duration: 2000
-      })
+    util.getQuery('invoice/getUserInvoiceHeads', {userId: userid}, "加载中", function success(res) {
+      let list = JSON.stringify(res.data.list);
+        console.log("获取抬头列表成功");
+        if (list && list.length > 0){
+          wx.redirectTo({
+            url: '../titleList/titleList?list=' + list
+          })
+        }else{
+          wx.redirectTo({
+            url: '../addTitle/addTitle'
+          })
+        }
     }, function fail(res) {
-      // util.showToastErr(res.data.returnmessage);
-      console.log(res);
-      if (res.data.returnMessage != "") {
-        util.isError("" + res.data.returnMessage, that);
-      }
-
+      console.log("获取抬头列表失败");
     })
   },
 
   globalData: {
-    userInfo: null,
-    getOpnidParms: { appId:"wx73ca0044fd536511"}
+    userInfo: {userId:null},
+    openidParms: { appId:"wx73ca0044fd536511"}
   },
    
 })

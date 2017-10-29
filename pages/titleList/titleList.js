@@ -1,4 +1,6 @@
 // pages/titleList/titleList.js
+const app = getApp()
+var net = require("../../utils/net.js");
 Page({
 
   /**
@@ -33,7 +35,12 @@ Page({
         list_title: list,
       });
     }
-  
+
+    if(app.globalData.userInfo.userId){
+      net.getUserTitleList(app.globalData.userInfo.userId,that)
+       
+    }
+   
   },
 
   /**

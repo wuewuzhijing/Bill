@@ -133,14 +133,6 @@ Page({
     data.hotelId = "B335C79F2B7748A49DCF962BDBC8D220";
     data.reciveWay = "1";
 
-    console.log(data);
-
-    // if (data.surplus == '0') {
-    //   var arr = new Array('', '剩余空位', '乘车人数');
-    //   util.isError('请选择' + arr[data.type], that);
-    //   return false;
-    // }
-
     if (data.headName == '') {
       util.isError('请输抬头', that);
       return false;
