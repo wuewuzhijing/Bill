@@ -28,17 +28,17 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+    console.log("取到的对象2 " + options.scene); // 
     if (options.list) {
       var list = JSON.parse(options.list);
-      console.log("取到的对象 " + list.headName)
+      console.log("取到的对象 " + list.headName);
       this.setData({
         list_title: list,
       });
-    }
-
-    if(app.globalData.userInfo.userId){
-      net.getUserTitleList(app.globalData.userInfo.userId,that)
-       
+    }else{
+      if (app.globalData.userInfo.userId) {
+        net.getUserTitleList(app.globalData.userInfo.userId, that)
+      }
     }
    
   },
@@ -108,4 +108,15 @@ Page({
       url: '../addTitle/addTitle'
     })
   },
+  selectTitleItem:function(e){
+    let info = JSON.stringify(e);
+    console.log("1点击" + info)
+    var itemsss = e.target.index;
+    console.log("点击" + itemsss)
+    
+    // that.setData({
+    //   headName: temData.value
+    // });
+   
+  }
 })

@@ -1,6 +1,6 @@
 <!--pages/addTitle/addTitle.wxml-->
 <!-- style='background:red' -->
-<import src="/wxSearch/wxSearch.wxml"/>
+<!-- <import src="/wxSearch/wxSearch.wxml"/>  // 配合template标签使用 -->
 
 <view class='container'>
 
@@ -33,7 +33,7 @@
 
       <view class="{{type==2?'addTitle-pancelNoBoder':'addTitle-pancel'}}">
         <text class='conmm_text addTitle-text'>发票抬头</text>
-        <input bindinput="wxSearchInput" bindfocus="wxSerchFocus" name="headName" value="{{headName}}" bindblur="wxSearchBlur"                  class="addTitle-input" placeholder-class="psection" placeholder="单位/企业名称" />
+        <input bindinput="wxSearchInput" bindfocus="wxSerchFocus" name="headName" value="{{headName}}" bindblur="wxSearchBlur" class="addTitle-input" placeholder-class="psection" placeholder="单位/企业名称" />
         <!-- <button class="wxSearch-button" bindtap="wxSearchFn" size="mini" plain="true">导入微信抬头</button> -->
         <text class="addTitle-button" bindtap="wxSearchFn" >导入抬头</text>
       </view>
@@ -92,10 +92,11 @@
 
   <!-- <template is="wxSearch" data="{{wxSearchData}}"/> -->
 
+<view class='searchDataList' bindtap="wxSearchTap" wx:if="{{wxSearchData.view.isShow}}">
   <block wx:for="{{wxSearchData.mindKeys}}" wx:key="unique">
-      <view class="wxSearchMindKeyItem" bindtap="wxSearchKeyTap" data-key="{{item}}">{{item}}</view>
+      <view class="SearchMindKeyItem" bindtap="wxSearchKeyTap" data-key="{{item}}">{{item}}</view>
   </block>
-
+</view>
 
 
 </view>

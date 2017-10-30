@@ -26,7 +26,14 @@ Page({
       url: '../logs/logs'
     })
   },
-  onLoad: function () {
+  onLoad: function (options) {
+
+    console.log("扫码取到的数据" + options.scene);
+
+    wx.showLoading({
+      title: "加载中",
+    })
+
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,

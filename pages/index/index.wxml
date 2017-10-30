@@ -1,8 +1,8 @@
 <!--index.wxml 测试代码类-->
 <view class="container">
-  <view> 
+  <!-- <view> 
       <text catchtap="bindViewTap" class="index-hotel-name">{{info}}</text>
-  </view>
+  </view> -->
     <!-- <view class="userinfo"> -->
       <!-- <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button> -->
       <!-- <block wx:else> -->
@@ -16,10 +16,10 @@
       <text class="user-motto">{{motto}}</text>
     </view> -->
 
-    <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view> 
+    <!-- <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>  -->
 
   <!-- 如何让这个弹窗在任意页面都可以调用 ， 这种方法是否可行？ -->
-  <view class="modalDlg" wx:if="{{showModal}}">  
+  <!-- <view class="modalDlg" wx:if="{{showModal}}">  
       <text class="index_dialog_text">前台领取</text> 
       <text class="index_dialog_text">邮寄到家</text>
       <text class="index_dialog_text">电子发票</text>
@@ -28,7 +28,7 @@
   </view>
 
   <button bindtap="submit">点我弹窗</button>
-  <button bindtap="submit3">发送验证码-请求测试</button>
+  <button bindtap="submit3">发送验证码-请求测试</button> -->
 
   <!-- <radio-group class="radio-group" bindchange="radioCheckedChange" >
       <view class="flex_item">  
@@ -48,7 +48,7 @@
         </view>    
   </radio-group> -->
 
-  <form bindsubmit="formSubmit">
+  <!-- <form bindsubmit="formSubmit">
     <view class="weui-cells weui-cells_after-title" >
       <view class="weui-cell weui-cell_input" >
         <view class="weui-cell__hd">
@@ -96,7 +96,7 @@
     </view>
     
 
-  </form>
+  </form> -->
 
 
 </view>

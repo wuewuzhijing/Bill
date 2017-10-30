@@ -1,15 +1,15 @@
 {
   "pages":[
+    "pages/index/index",
     "pages/titleList/titleList",
     "pages/addTitle/addTitle",
-    "pages/index/index",
     "pages/logs/logs"
     
   ],
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "快捷开票",
+    "navigationBarTitleText": "发票抬头",
     "navigationBarTextStyle":"black"
   },
 

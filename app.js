@@ -38,6 +38,15 @@ App({
                 })
               }else{
                 console.log("获取用户信息授权失败")
+                if (!res.authSetting['scope.userInfo']) {
+                  wx.authorize({
+                    scope: 'scope.userInfo',
+                    success() {
+                      // 用户已经获取用户信息，后续调用接口不会弹窗询问
+                      wx.startRecord()
+                    }
+                  })
+                }
               }
             }
           })
@@ -51,12 +60,9 @@ App({
   //获取opind
   getOpenId: function (parms){
     let that = this;
-    
-    console.log(that);
-    wx.showLoading({
-      title: "正在登录",
-    });
-
+    // wx.showLoading({
+    //   title: "正在登录",
+    // });
     wx.request({
       url: "https://dev.bookingyun.com/hotel_wx/rest/wxRest/getSNSUserInfoByEncryptedData",
       method: 'GET',
@@ -78,6 +84,7 @@ App({
       fail: function () {
         wx.hideLoading();
         console.log("获取openid失败")
+        that.getDataFail();
       }
     })
   },
@@ -104,19 +111,23 @@ App({
         that.getUserTitleList(that.globalData.userInfo.userId );
       },
       fail: function () {
-        console.log("获取openid失败")
+        console.log("获取userid")
+        that.getDataFail();
       }
     })
   },
 
   //获取用户的抬头列表
   getUserTitleList:function(userid){
-    util.getQuery('invoice/getUserInvoiceHeads', {userId: userid}, "加载中", function success(res) {
+    var that = this;
+    util.getQuery('invoice/getUserInvoiceHeads', {userId: userid}, "", function success(res) {
       let list = JSON.stringify(res.data.list);
-        console.log("获取抬头列表成功");
-        if (list && list.length > 0){
+      console.log("获取抬头列表成功");
+        if (list && list.length > 2){
           wx.redirectTo({
             url: '../titleList/titleList?list=' + list
+            //  url: '../titleList/titleList'
+              // url: '../addTitle/addTitle'
           })
         }else{
           wx.redirectTo({
@@ -125,6 +136,13 @@ App({
         }
     }, function fail(res) {
       console.log("获取抬头列表失败");
+      that.getDataFail();
+    })
+  },
+
+  getDataFail:function(){
+    wx.redirectTo({
+      url: '../addTitle/addTitle'
     })
   },
 

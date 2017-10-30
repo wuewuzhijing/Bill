@@ -111,6 +111,15 @@ Page({
     var that = this
     WxSearch.wxSearchBlur(e, that);
   },
+  wxSearchKeyTap: function (e) {
+    var that = this
+    WxSearch.wxSearchKeyTap(e, that);
+  },
+  
+  wxSearchTap: function (e) {
+    var that = this
+    WxSearch.wxSearchHiddenPancel(that);
+  },
 
   clearMessage:function(){
     var that = this;

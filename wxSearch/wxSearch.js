@@ -110,6 +110,7 @@ function wxSearchFocus(e, that, callBack) {
 function wxSearchBlur(e, that, callBack) {
     var temData = that.data.wxSearchData;
     temData.value = e.detail.value;
+    temData.view.isShow = false;
     that.setData({
         wxSearchData: temData
     });
@@ -119,6 +120,7 @@ function wxSearchBlur(e, that, callBack) {
 }
 
 function wxSearchHiddenPancel(that){
+  console.log("触发隐藏事件")
     var temData = that.data.wxSearchData;
     temData.view.isShow = false;
     that.setData({
@@ -127,11 +129,14 @@ function wxSearchHiddenPancel(that){
 }
 
 function wxSearchKeyTap(e, that, callBack) {
+  
     //回调
     var temData = that.data.wxSearchData;
     temData.value = e.target.dataset.key;
+    console.log("点击" + temData.value)
     that.setData({
-        wxSearchData: temData
+        // wxSearchData: temData,
+      headName: temData.value
     });
     if (typeof (callBack) == "function") {
         callBack();

@@ -87,3 +87,27 @@ radio-group{
   color: #42AE3C;
 }
 
+.searchDataList{
+  background-color: #e5e5e5;
+  position: fixed;
+  -webkit-transform: translateZ(0);
+          transform: translateZ(0);
+  top: 300rpx;
+  left: 0;
+  right: 0;
+  font-size: 14px;
+  text-align: center;
+  color: #FFFFFF;
+  z-index: 5001;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.SearchMindKeyItem{
+  padding: 20rpx 40rpx;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  font-size: 14px;
+  color: cornflowerblue;
+}
+
