@@ -98,7 +98,7 @@ Page({
         let info = JSON.stringify(res);
         console.log(info);
         wx.navigateTo({
-          url: '../addTitle/addTitle?info=' + info
+          url: '../addTitle/addTitle?type=2&info=' + info
         })
       }
     })
@@ -109,14 +109,21 @@ Page({
     })
   },
   selectTitleItem:function(e){
-    let info = JSON.stringify(e);
-    console.log("1点击" + info)
-    var itemsss = e.target.index;
+    var that = this;
+    var itemsss = e.currentTarget.dataset.index;
     console.log("点击" + itemsss)
+
+    let info = JSON.stringify(that.data.list_title[itemsss]);
+    console.log(info);
+    wx.navigateTo({
+      url: '../addTitle/addTitle?type=1&info=' + info
+    })
     
     // that.setData({
-    //   headName: temData.value
+    //   headName: that.data.list_title[2].headName
     // });
+
+    // console.log(this.data.headName);
    
   }
 })

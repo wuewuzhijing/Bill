@@ -11,6 +11,7 @@ Page({
     type:0,
 
     info:{},
+    list_title: [], // 模糊搜索取到的集合
 
     userId:"",
     headType: 1,
@@ -29,18 +30,29 @@ Page({
   onLoad: function (options) {
 
     var that = this
-
+    var info = JSON.parse(options.info);
+    console.log("取到的对象 " + info.headName)
     if (options.info){
-      var info = JSON.parse(options.info);
-      console.log("取到的对象 " + info.telephone)
-      this.setData({
-        headName: info.title,
-        taxNo:info.taxNumber,
-        address:info.companyAddress,
-        telephone: info.telephone,
-        bankName: info.bankName,
-        bankAccount: info.bankAccount,   
-      });
+      if (options.type == 1){    // 点击抬头列表时导入的数据
+        this.setData({
+          headName: info.headName,
+          taxNo: info.taxNo,
+          address: info.address,
+          telephone: info.telephone,
+          bankName: info.bankName,
+          bankAccount: info.bankAccount,
+        });
+      } else if (options.type == 2){   // 导入微信抬头时的数据
+        this.setData({
+          headName: info.title,
+          taxNo: info.taxNumber,
+          address: info.companyAddress,
+          telephone: info.telephone,
+          bankName: info.bankName,
+          bankAccount: info.bankAccount,
+        });
+      }
+     
     }
 
     //初始化的时候渲染wxSearchdata

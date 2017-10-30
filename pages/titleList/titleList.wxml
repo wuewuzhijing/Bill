@@ -4,8 +4,8 @@
   <view style='margin-top: 20rpx;background-color: #fff'>
 
     <view class='list_item' wx:for="{{list_title}}" wx:key="unique" > 
-      <view style=' display: flex; flex-direction: column' bindtap='selectTitleItem'>
-        <text>{{item.headName}} + {{index}}</text>
+      <view style=' display: flex; flex-direction: column'  data-index="{{index}}" bindtap='selectTitleItem'>
+        <text>{{item.headName}}</text>
         <text>{{item.invoiceHeadId==1?"增值税普通发票":"增值税专用发票"}} </text>
       </view>
     </view>

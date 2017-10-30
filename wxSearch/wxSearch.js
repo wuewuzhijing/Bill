@@ -1,4 +1,5 @@
 // 定义数据格式
+var util = require("../utils/util.js");
 
 /***
  * 
@@ -18,6 +19,8 @@
  * 
  */
 var __keysColor = [];
+
+var queryList = [];
 
 var __mindKeys = [];
 
@@ -71,21 +74,48 @@ function wxSearchInput(e, that, callBack){
     var temData = that.data.wxSearchData;
     var text = e.detail.value;
     var mindKeys = [];
-    if(typeof(text) == "undefined" || text.length == 0){
-        
-    }else{
-        for(var i = 0; i < __mindKeys.length; i++){
-            var mindKey = __mindKeys[i];
-            if(mindKey.indexOf(text) > -1){
-                mindKeys.push(mindKey);
-            }
-        }
-    }
-    temData.value = text;
-    temData.mindKeys = mindKeys;
-    that.setData({
+
+    util.getQuery('invoice/queryInvoiceHeadsByKeyword', { keyword: text}, "", 
+    function success(res) {
+      queryList = res.data.list;
+      console.log("获取title成功" + queryList.length);
+      if (res.data.list && queryList.length> 1){
+        for (var i = 0; i < queryList.length;i++){
+          var mindKey = res.data.list[i].headName;
+          if (mindKey.indexOf(text) > -1) {
+            mindKeys.push(mindKey);
+          }
+       }
+      }
+
+      temData.value = text;
+      temData.mindKeys = mindKeys;
+      that.setData({
         wxSearchData: temData
-    });
+      });
+      
+    }, function fail(res) {
+      console.log("获取title失败");
+    })
+
+   
+    // if(typeof(text) == "undefined" || text.length == 0){
+        
+    // }else{
+    //     for(var i = 0; i < __mindKeys.length; i++){
+    //         var mindKey = __mindKeys[i];
+    //         if(mindKey.indexOf(text) > -1){
+    //             mindKeys.push(mindKey);
+    //         }
+    //     }
+    // }
+
+
+    // temData.value = text;
+    // temData.mindKeys = mindKeys;
+    // that.setData({
+    //     wxSearchData: temData
+    // });
 }
 
 function wxSearchFocus(e, that, callBack) {
@@ -107,6 +137,7 @@ function wxSearchFocus(e, that, callBack) {
 
     // }
 }
+
 function wxSearchBlur(e, that, callBack) {
     var temData = that.data.wxSearchData;
     temData.value = e.detail.value;
@@ -132,12 +163,30 @@ function wxSearchKeyTap(e, that, callBack) {
   
     //回调
     var temData = that.data.wxSearchData;
-    temData.value = e.target.dataset.key;
-    console.log("点击" + temData.value)
+    // temData.value = e.target.dataset.key;
+    var itemIndex = e.currentTarget.dataset.index;
+   
+
+
+    // that.setData({
+    //     // wxSearchData: temData,
+    //   headName: temData.value
+    // });
+
+    var info = queryList[itemIndex]
+
+    console.log("点击" + info)
     that.setData({
-        // wxSearchData: temData,
-      headName: temData.value
+      headName: info.headName,
+      taxNo: info.taxNo,
+      address: info.address,
+      telephone: info.telephone,
+      bankName: info.bankName,
+      bankAccount: info.bankAccount,
     });
+
+
+
     if (typeof (callBack) == "function") {
         callBack();
     }

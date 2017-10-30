@@ -94,7 +94,7 @@
 
 <view class='searchDataList' bindtap="wxSearchTap" wx:if="{{wxSearchData.view.isShow}}">
   <block wx:for="{{wxSearchData.mindKeys}}" wx:key="unique">
-      <view class="SearchMindKeyItem" bindtap="wxSearchKeyTap" data-key="{{item}}">{{item}}</view>
+      <view class="SearchMindKeyItem" bindtap="wxSearchKeyTap" data-key="{{item}}" data-index="{{index}}">{{item}}</view>
   </block>
 </view>
 
