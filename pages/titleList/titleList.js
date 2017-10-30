@@ -92,19 +92,20 @@ Page({
   
   },
 
+  //导入微信title
   importTitle:function(){
     wx.chooseInvoiceTitle({
       success(res) {
         let info = JSON.stringify(res);
         console.log(info);
-        wx.navigateTo({
+        wx.redirectTo({
           url: '../addTitle/addTitle?type=2&info=' + info
         })
       }
     })
   },
   addTitle:function(){
-    wx.navigateTo({
+    wx.redirectTo({
       url: '../addTitle/addTitle'
     })
   },
@@ -115,7 +116,7 @@ Page({
 
     let info = JSON.stringify(that.data.list_title[itemsss]);
     console.log(info);
-    wx.navigateTo({
+    wx.redirectTo({
       url: '../addTitle/addTitle?type=1&info=' + info
     })
     

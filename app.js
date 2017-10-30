@@ -2,11 +2,16 @@
 var util = require("utils/util.js")
 App({
   onLaunch: function () {
+    console.log("初始化");
     let that = this;
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
+  },
+
+  login:function(){
+    var that = this
     // 登录
     wx.login({
       success: res => {
@@ -19,8 +24,8 @@ App({
                 // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
 
                 that.getUserInfo();
-               
-              }else{
+
+              } else {
                 console.log("获取用户信息授权失败")
                 if (!res.authSetting['scope.userInfo']) {
                   wx.authorize({
@@ -37,10 +42,10 @@ App({
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
       }
     })
-   
   },
 
 
+  //获取用户信息
   getUserInfo:function(){
     let that = this;
     wx.getUserInfo({
@@ -111,10 +116,9 @@ App({
         console.log("获取userid成功" + res.data.userId)
         if (res.data.userId) {
           //获取用户的抬头列表 ， 如果有数据打开抬头列表页，没有数据就进入添加抬头页
-          // this.globalData.userInfo.userId = res.data.userId
-          that.globalData.userInfo.userId = "567"
+          that.globalData.userInfo.userId = res.data.userId
+          // that.globalData.userInfo.userId = "567"
         }
-        var userid = { userId: "567" };
         that.getUserTitleList(that.globalData.userInfo.userId );
       },
       fail: function () {
@@ -128,9 +132,10 @@ App({
   getUserTitleList:function(userid){
     var that = this;
     util.getQuery('invoice/getUserInvoiceHeads', {userId: userid}, "", function success(res) {
-      let list = JSON.stringify(res.data.list);
-      console.log("获取抬头列表成功");
-        if (list && list.length > 2){
+      
+      if (res.data.list && res.data.list.length > 2){
+        console.log("获取抬头列表成功");
+          let list = JSON.stringify(res.data.list);
           wx.redirectTo({
             url: '../titleList/titleList?list=' + list
             //  url: '../titleList/titleList'

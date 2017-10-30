@@ -4,7 +4,7 @@
 
 <view class='container'>
 
-  <view class="top_title">
+  <view class="top_title" style='font-size:28rpx;color:#333;'>
     <text >酒店名称</text>
   </view>
 
@@ -33,9 +33,9 @@
 
       <view class="{{type==2?'addTitle-pancelNoBoder':'addTitle-pancel'}}">
         <text class='conmm_text addTitle-text'>发票抬头</text>
-        <input bindinput="wxSearchInput" bindfocus="wxSerchFocus" name="headName" value="{{headName}}" bindblur="wxSearchBlur" class="addTitle-input" placeholder-class="psection" placeholder="单位/企业名称" />
+        <input bindinput="wxSearchInput" name="headName" value="{{headName}}" bindblur="wxSearchBlur" class="addTitle-input" placeholder-class="psection" placeholder="单位/企业名称" />
         <!-- <button class="wxSearch-button" bindtap="wxSearchFn" size="mini" plain="true">导入微信抬头</button> -->
-        <text class="addTitle-button" bindtap="wxSearchFn" >导入抬头</text>
+        <text class="addTitle-button" bindtap="importTitle" >导入抬头</text>
       </view>
 
       <view class="{{type==0?'addTitle-pancelNoBoder':'addTitle-pancel'}}" wx:if="{{type != 2}}">

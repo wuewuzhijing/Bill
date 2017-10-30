@@ -28,11 +28,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
     var that = this
-    var info = JSON.parse(options.info);
-    console.log("取到的对象 " + info.headName)
     if (options.info){
+      var info = JSON.parse(options.info);
       if (options.type == 1){    // 点击抬头列表时导入的数据
         this.setData({
           headName: info.headName,
@@ -55,9 +53,10 @@ Page({
      
     }
 
-    //初始化的时候渲染wxSearchdata
-    WxSearch.init(that, 43, ['weappdev', '小程序', 'wxParse', 'wxSearch', 'wxNotification']);
-    WxSearch.initMindKeys(['weappdev.com', '微信小程序开发', '微信开发', '微信小程序', 'weappdev', '小程序', 'wxParse', 'wxSearch', 'wxNotification']);
+    // //初始化的时候渲染wxSearchdata
+    // WxSearch.init(that, 43, ['weappdev', '小程序', 'wxParse', 'wxSearch', 'wxNotification']);
+    // WxSearch.initMindKeys(['weappdev.com', '微信小程序开发', '微信开发', '微信小程序', 'weappdev', '小程序', 'wxParse', 'wxSearch', 'wxNotification']);
+    WxSearch.init(that);
   },
 
   /**
@@ -115,10 +114,7 @@ Page({
     var that = this
     WxSearch.wxSearchInput(e, that);
   },
-  wxSerchFocus: function (e) {
-    var that = this
-    WxSearch.wxSearchFocus(e, that);
-  },
+
   wxSearchBlur: function (e) {
     var that = this
     WxSearch.wxSearchBlur(e, that);
@@ -128,19 +124,15 @@ Page({
     WxSearch.wxSearchKeyTap(e, that);
   },
   
-  wxSearchTap: function (e) {
-    var that = this
-    WxSearch.wxSearchHiddenPancel(that);
-  },
-
   clearMessage:function(){
     var that = this;
     console.log(123)
     util.clearError(that);
+    WxSearch.wxSearchHiddenPancel(that);
   },
 
-  wxSearchFn: function () {
-    wx.navigateTo({
+  importTitle: function () {
+    wx.redirectTo({
       url: '../titleList/titleList'
     })
   },

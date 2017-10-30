@@ -76,7 +76,7 @@ radio-group{
 
 .addTitle-input{
   flex: 2; 
-  padding: 20rpx 40rpx 20rpx;
+  padding: 20rpx;
   font-size: 28rpx;
 }
 .addTitle-button{
