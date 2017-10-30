@@ -32,12 +32,22 @@
         </view>    
       </radio-group>
 
-      <view class="{{type==2?'addTitle-pancelNoBoder':'addTitle-pancel'}}">
-        <text class='conmm_text addTitle-text'>发票抬头</text>
-        <input bindinput="wxSearchInput" name="headName" value="{{headName}}" bindblur="wxSearchBlur" class="addTitle-input" placeholder-class="psection" placeholder="单位/企业名称" />
-        <!-- <button class="wxSearch-button" bindtap="wxSearchFn" size="mini" plain="true">导入微信抬头</button> -->
-        <text class="addTitle-button" bindtap="importTitle" >导入抬头</text>
+
+      <view class='addTtile_eare'>
+          <view class="{{type==2?'addTitle-pancelNoBoder':'addTitle-pancel'}}">
+            <text class='conmm_text addTitle-text'>发票抬头</text>
+            <input bindinput="wxSearchInput" name="headName" value="{{headName}}" bindblur="wxSearchBlur" class="addTitle-input" placeholder-class="psection" placeholder="单位/企业名称" />
+            <!-- <button class="wxSearch-button" bindtap="wxSearchFn" size="mini" plain="true">导入微信抬头</button> -->
+            <text class="addTitle-button" bindtap="importTitle" >导入抬头</text>
+          </view>
+          <view class='searchDataList' bindtap="wxSearchTap" wx:if="{{wxSearchData.view.isShow}}">
+            <block wx:for="{{wxSearchData.mindKeys}}" wx:key="unique">
+                <view class="SearchMindKeyItem" bindtap="wxSearchKeyTap" data-key="{{item}}" data-index="{{index}}">{{item}}</view>
+            </block>
+          </view>      
       </view>
+
+      
 
       <view class="{{type==0?'addTitle-pancelNoBoder':'addTitle-pancel'}}" wx:if="{{type != 2}}">
         <text class='conmm_text addTitle-text'>企业税号</text>
@@ -93,11 +103,7 @@
 
   <!-- <template is="wxSearch" data="{{wxSearchData}}"/> -->
 
-<view class='searchDataList' bindtap="wxSearchTap" wx:if="{{wxSearchData.view.isShow}}">
-  <block wx:for="{{wxSearchData.mindKeys}}" wx:key="unique">
-      <view class="SearchMindKeyItem" bindtap="wxSearchKeyTap" data-key="{{item}}" data-index="{{index}}">{{item}}</view>
-  </block>
-</view>
+
 
 </view>
 
