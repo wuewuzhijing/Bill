@@ -117,6 +117,7 @@ function wxSearchInput(e, that, callBack){
     // });
 }
 
+// 失去焦点
 function wxSearchBlur(e, that, callBack) {
     var temData = that.data.wxSearchData;
 
@@ -128,7 +129,7 @@ function wxSearchBlur(e, that, callBack) {
 
     }else{
       // temData.value = e.detail.value;
-      temData.view.isShow = false;
+      // temData.view.isShow = true;
       that.setData({
         wxSearchData: temData
       });

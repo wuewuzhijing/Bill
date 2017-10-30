@@ -138,8 +138,6 @@ App({
           let list = JSON.stringify(res.data.list);
           wx.redirectTo({
             url: '../titleList/titleList?list=' + list
-            //  url: '../titleList/titleList'
-              // url: '../addTitle/addTitle'
           })
         }else{
           wx.redirectTo({

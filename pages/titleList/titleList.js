@@ -28,10 +28,8 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    console.log("取到的对象2 " + options.scene); // 
-    if (options.list) {
+    if (options.list) {  //启动页会判断是否有title列表，有的话直接带过来
       var list = JSON.parse(options.list);
-      console.log("取到的对象 " + list.headName);
       this.setData({
         list_title: list,
       });
