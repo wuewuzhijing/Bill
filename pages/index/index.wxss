@@ -1,4 +1,12 @@
 /**index.wxss**/
+
+.index_logo{
+   display: flex;
+   margin-top: 700rpx;
+   justify-content:center;
+   align-items:center; 
+}
+
 .userinfo {
   display: flex;
   flex-direction: column;

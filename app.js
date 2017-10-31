@@ -133,7 +133,8 @@ App({
     var that = this;
     util.getQuery('invoice/getUserInvoiceHeads', {userId: userid}, "", function success(res) {
       
-      if (res.data.list && res.data.list.length > 2){
+
+      if (res.data.list && res.data.list.length > 0){
         console.log("获取抬头列表成功");
           let list = JSON.stringify(res.data.list);
           wx.redirectTo({
@@ -158,7 +159,10 @@ App({
 
   globalData: {
     userInfo: {userId:null},
-    openidParms: { appId:"wx73ca0044fd536511"}
+    openidParms: { appId:"wx73ca0044fd536511"},
+    lists:[],
+    hotelId:"",
+    hotelName:"酒店名称5",
   },
    
 })

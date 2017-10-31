@@ -77,7 +77,7 @@ function wxSearchInput(e, that, callBack){
     function success(res) {
       queryList = res.data.list;
       console.log("获取title成功" + queryList.length);
-      if (res.data.list && queryList.length> 1){
+      if (res.data.list && queryList.length> 0){
         for (var i = 0; i < queryList.length;i++){
           var mindKey = res.data.list[i].headName;
           if (mindKey.indexOf(text) > -1) {

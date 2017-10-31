@@ -1,5 +1,10 @@
 <!--index.wxml 测试代码类-->
 <view class="container">
+
+  <view class='index_logo'>
+    <image src="../../images/icon/xcx_home_logo.png" mode="widthFix" style="width:160px;height:68px;"/>
+  </view>
+
   <!-- <view> 
       <text catchtap="bindViewTap" class="index-hotel-name">{{info}}</text>
   </view> -->

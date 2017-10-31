@@ -1,6 +1,7 @@
 // pages/addTitle/addTitle.js
 var WxSearch = require('../../wxSearch/wxSearch.js');
 var util = require("../../utils/util.js");
+const app = getApp();
 Page({
 
   /**
@@ -9,6 +10,7 @@ Page({
   data: {
     radioCheck:0,
     type:0,
+    hotelName: "",
 
     info:{},
     list_title: [], // 模糊搜索取到的集合
@@ -39,6 +41,7 @@ Page({
           telephone: info.telephone,
           bankName: info.bankName,
           bankAccount: info.bankAccount,
+          hotelName: app.globalData.hotelName,
         });
       } else if (options.type == 2){   // 导入微信抬头时的数据
         this.setData({
@@ -48,6 +51,7 @@ Page({
           telephone: info.telephone,
           bankName: info.bankName,
           bankAccount: info.bankAccount,
+          hotelName: app.globalData.hotelName,
         });
       }
      
@@ -141,9 +145,8 @@ Page({
     var data = e.detail.value;
     var that = this;
    
-    data.userId = "567";
-    data.invoiceType = "1";
-    data.hotelId = "B335C79F2B7748A49DCF962BDBC8D220";
+    data.userId = app.globalData.userInfo.userId;
+    data.hotelId = app.globalData.hotelId;
     data.reciveWay = "1";
 
     if (data.headName == '') {
@@ -158,17 +161,41 @@ Page({
       }
 
       data.headType = "1";
+      data.invoiceType = "1";
       
     } else if (that.data.type == 1){
       if (data.taxNo == '') {
         util.isError('请输入税号', that);
         return false;
       }
+      if (data.address == '') {
+        util.isError('请输入公司注册地址', that);
+        return false;
+      }
+      if (data.telephone == '') {
+        util.isError('请输入公司电话', that);
+        return false;
+      }
+      if (data.bankName == '') {
+        util.isError('请输入公司开户银行', that);
+        return false;
+      }
+      if (data.bankAccount == '') {
+        util.isError('请输入开户公司开户帐号', that);
+        return false;
+      }
 
       data.headType = "1";
+      data.invoiceType = "2";
 
     } else if (that.data.type == 2){
+      if (data.taxNo == '') {
+        util.isError('请输入税号', that);
+        return false;
+      }
+     
       data.headType = "0";
+      data.invoiceType = "1";
     }
 
     console.log("开始提交");
@@ -178,6 +205,9 @@ Page({
         title: '提交成功',
         icon: 'success',
         duration: 2000
+      })
+      wx.redirectTo({
+        url: '../commitSuc/commitSuc'
       })
     },function fail(res){
       // util.showToastErr(res.data.returnmessage);

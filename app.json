@@ -3,6 +3,7 @@
     "pages/index/index",
     "pages/titleList/titleList",
     "pages/addTitle/addTitle",
+    "pages/commitSuc/commitSuc",
     "pages/logs/logs"
     
   ],

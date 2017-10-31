@@ -6,7 +6,7 @@
 
 
   <view class="top_title" style='font-size:28rpx;color:#333;'>
-    <text >酒店名称</text>
+    <text >{{hotelName}}</text>
   </view>
 
  <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{errorMsg}}</view>
@@ -76,7 +76,7 @@
     </view>
 
     <view class="addTitle-section" >
-      <view class="addTitle-pancel"  class="{{type!=1?'addTitle-pancelNoBoder':'addTitle-pancel'}}">
+      <view class="addTitle-pancel"  class="{{type!=3?'addTitle-pancelNoBoder':'addTitle-pancel'}}">
         <text class='conmm_text addTitle-text'>房间号</text>
         <input  name="roomNum" class="addTitle-input" placeholder-class="psection" placeholder="请输入房间号" />
       </view>
@@ -86,7 +86,7 @@
         <input name="getTtpe"  class="addTitle-input" placeholder-class="psection" placeholder="邮寄到家" />
       </view>
 
-      <view class="addTitle-pancelNoBoder" wx:if="{{type == 1}}">
+      <view class="addTitle-pancelNoBoder" wx:if="{{type == 1}}" hidden='true'>
         <text class='conmm_text addTitle-text'>领取地址</text>
         <input name="getAddress"  class="addTitle-input" placeholder-class="psection" placeholder="添加地址" />
       </view>

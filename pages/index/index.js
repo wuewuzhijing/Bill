@@ -1,5 +1,6 @@
 //index.js
 //获取应用实例
+var net = require("../../utils/net.js");
 const app = getApp()
 
 Page({
@@ -27,18 +28,31 @@ Page({
     })
   },
   onLoad: function (options) {
-    console.log("扫码取到的数据" + options.scene);
-    wx.showLoading({
-      title: "加载中",
-    })
-    if (app.globalData.userInfo) {
-      console.log("初始化1");
-      // app.getUserInfo();
-      app.login();
-    } else {
-      console.log("初始化3");
-      app.login();
+    if (options.scene){
+      var fdStart = options.scene.indexOf("UB@");
+      if (fdStart == 0) {
+        app.globalData.hotelId = options.scene.slice(3);
+      }
+      wx.showLoading({
+        title: "加载中",
+      })
+      if (app.globalData.userInfo) {
+        console.log("初始化1");
+        // app.getUserInfo();
+        app.login();
+      } else {
+        console.log("初始化2");
+        app.login();
+      }
+
+      //获取酒店信息
+      net.getHotel(app.globalData.hotelId);
+    }else{
+      wx.showLoading({
+        title: "请扫码登录",
+      })
     }
+   
   },
 
   getUserInfo: function(e) {

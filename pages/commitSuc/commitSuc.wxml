@@ -1,0 +1,24 @@
+<!--pages/commitSuc/commitSuc.wxml-->
+<view class='container'>
+  <view class='top_section'>
+    <image src="../../images/icon/commit_success.png" mode="widthFix"  style="width:40rpx;height:40rpx;"></image>
+    <text class='top_text_success' style='backgruond:red'>提交成功</text>
+  </view>
+
+  <view class='middle_section'>
+     <view class='item_pancel' hidden='true'>
+      <text class='item_lelt'>房间号</text>
+      <text class='itme_right'>0815</text>
+    </view>
+
+     <view class='item_pancel'>
+      <text class='item_lelt'>领取方式</text>
+      <text class='itme_right'>前台领取</text>
+    </view>
+  </view>
+
+  <view class='buttom_section'>
+    <text style='color: #999;'>如有其它补充开票需求，请联系前台：</text>
+    <text style='color: #42AE3C;'>0755-88888888</text>
+  </view>
+</view>

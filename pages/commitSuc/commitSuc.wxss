@@ -1,0 +1,52 @@
+/* pages/commitSuc/commitSuc.wxss */
+
+.top_section{
+  display: flex;
+  height: 200rpx;
+  justify-content: center;
+  align-items: center;
+  background-color: #42AE3C;
+}
+
+.top_text_success{
+  color: #fff;
+  margin-left: 32rpx;
+  font-size: 40rpx;
+}
+
+.middle_section{
+  display: flex;
+  flex-direction: column;
+  margin-top: 20rpx;
+  background-color: #fff;
+  padding: 20rpx 32rpx;
+}
+
+.item_pancel{
+  display: flex;
+  padding: 5rpx 0;
+
+}
+
+.item_lelt{
+  font-size: 28rpx;
+  color: #999;
+  width: 150rpx;
+}
+
+.itme_right{
+  font-size: 28rpx;
+  color: #333;
+}
+
+.buttom_section{
+  display: flex;
+  width: 100%;
+  position: absolute;
+  font-size: 24rpx;
+  justify-content: center;
+  left: 0;
+  bottom: 0;
+  margin-bottom: 20rpx;
+  color: #999;
+}
