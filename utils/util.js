@@ -56,6 +56,41 @@ function getQuery(url, parms, message, success, fail) {
 }
 
 
+function checkSettingStatu(msg) {
+  var that = this;
+  // 判断是否是第一次授权，非第一次授权且授权失败则进行提醒
+  wx.getSetting({
+    success: function success(res) {
+      console.log(res.authSetting);
+      var authSetting = res.authSetting;
+      if (that.isEmptyObject(authSetting)) {
+        console.log('首次授权');
+      } else {
+        console.log('不是第一次授权', authSetting);
+        // 没有授权的提醒
+        if (authSetting[msg] === false) {
+          wx.hideLoading();
+          wx.showModal({
+            title: '用户未授权',
+            content: '如需正常使用开票功能，请按确定并在授权管理中进行授权，再重新进入小程序即可正常使用。',
+            showCancel: false,
+            success: function (res) {
+              if (res.confirm) {
+                console.log('用户点击确定')
+                wx.openSetting({
+                  success: function success(res) {
+                    console.log('openSetting success', res.authSetting);
+                  }
+                });
+              }
+            }
+          })
+        }
+      }
+    }
+  })
+}
+
 // 提示错误信息
 function isError(msg, that) {
   that.setData({
@@ -71,9 +106,19 @@ function clearError(that) {
   })
 }
 
+function isEmptyObject (value) {
+  var name;
+  for (name in value) {
+    return false;
+  }
+  return true;
+}
+
 module.exports = {
   formatTime: formatTime,
   getQuery: getQuery,
   isError: isError,
-  clearError: clearError
+  clearError: clearError,
+  isEmptyObject: isEmptyObject,
+  checkSettingStatu: checkSettingStatu,
 }

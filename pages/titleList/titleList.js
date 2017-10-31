@@ -1,6 +1,7 @@
 // pages/titleList/titleList.js
 const app = getApp()
 var net = require("../../utils/net.js");
+var util = require("../../utils/util.js");
 Page({
 
   /**
@@ -92,6 +93,33 @@ Page({
 
   //导入微信title
   importTitle:function(){
+    var that = this;
+    // 手动权限获取
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting['scope.invoiceTitle']) {
+          // 已经授权，可以直接调用
+          that.jump();
+        } else {
+          if (!res.authSetting['scope.invoiceTitle']) {
+            wx.authorize({
+              scope: 'scope.invoiceTitle',
+              success() {
+                that.jump();
+              },
+              fail(){
+                util.checkSettingStatu('scope.invoiceTitle');
+              }
+            })
+          }
+           
+        }
+      }
+    })
+   
+  },
+
+  jump:function(){
     wx.chooseInvoiceTitle({
       success(res) {
         let info = JSON.stringify(res);
@@ -102,6 +130,8 @@ Page({
       }
     })
   },
+
+
   addTitle:function(){
     wx.redirectTo({
       url: '../addTitle/addTitle'
