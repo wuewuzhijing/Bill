@@ -29,9 +29,9 @@ Page({
   },
   onLoad: function (options) {
     if (options.scene){
-      var fdStart = options.scene.indexOf("UB@");
+      var fdStart = options.scene.indexOf("V@");
       if (fdStart == 0) {
-        app.globalData.hotelId = options.scene.slice(3);
+        app.globalData.hotelId = options.scene.slice(2);
       }
       wx.showLoading({
         title: "加载中",
