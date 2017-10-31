@@ -2,7 +2,7 @@
 var util = require("util.js");
 const app = getApp();
 
-//获取用户的抬头列表
+
 function getUserTitleList(userid,obj) {
   util.getQuery('invoice/getUserInvoiceHeads',
    { userId: userid },
@@ -20,7 +20,7 @@ function getUserTitleList(userid,obj) {
   })
 }
 
-//获取酒店信息
+
 function getHotel(hotelid) {
   util.getQuery('hotel/getHotelSimpleInfoById',
     { hotelId: hotelid },
@@ -40,6 +40,6 @@ function getHotel(hotelid) {
 }
 
 module.exports = {
-  getUserTitleList: getUserTitleList,
-  getHotel: getHotel,
+  getUserTitleList: getUserTitleList,  //获取用户的抬头列表
+  getHotel: getHotel,                  //获取酒店信息
 }

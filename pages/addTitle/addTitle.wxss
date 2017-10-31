@@ -96,7 +96,7 @@ radio-group{
   position:absolute;
   background-color: #e5e5e5;
   font-size: 14px;
-  top: 88rpx;
+  top: 85rpx;
   text-align: center;
   color: #FFFFFF;
   z-index: 5001;
