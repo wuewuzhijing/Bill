@@ -130,7 +130,6 @@ Page({
   
   clearMessage:function(){
     var that = this;
-    console.log(123)
     util.clearError(that);
     WxSearch.wxSearchHiddenPancel(that);
   },

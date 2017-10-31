@@ -32,6 +32,8 @@ Page({
       var fdStart = options.scene.indexOf("V@");
       if (fdStart == 0) {
         app.globalData.hotelId = options.scene.slice(2);
+        //获取酒店信息
+        net.getHotel(app.globalData.hotelId);
       }
       wx.showLoading({
         title: "加载中",
@@ -45,8 +47,7 @@ Page({
         app.login();
       }
 
-      //获取酒店信息
-      net.getHotel(app.globalData.hotelId);
+    
     }else{
       wx.showLoading({
         title: "请扫码登录",

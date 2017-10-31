@@ -77,12 +77,13 @@ function wxSearchInput(e, that, callBack){
     function success(res) {
       queryList = res.data.list;
       console.log("获取title成功" + queryList.length);
+      console.log(res);
       if (res.data.list && queryList.length> 0){
         for (var i = 0; i < queryList.length;i++){
           var mindKey = res.data.list[i].headName;
-          if (mindKey.indexOf(text) > -1) {
+          // if (mindKey.indexOf(text) > -1) {
             mindKeys.push(mindKey);
-          }
+          // }
        }
       }
 
@@ -150,6 +151,7 @@ function wxSearchHiddenPancel(that){
     });
 }
 
+//模糊搜索item的点击事件
 function wxSearchKeyTap(e, that, callBack) {
   wxSearchHiddenPancel(that);
   //回调
@@ -166,7 +168,7 @@ function wxSearchKeyTap(e, that, callBack) {
 
   var info = queryList[itemIndex]
 
-  console.log("点击" + info)
+  console.log("点击" +  itemIndex + info.headName)
   that.setData({
     headName: info.headName,
     taxNo: info.taxNo,
