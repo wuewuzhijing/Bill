@@ -29,6 +29,7 @@ function getHotel(hotelid) {
       console.log(res);
       if (res.data.hotelName){
         app.globalData.hotelName = res.data.hotelName;
+        app.globalData.hotelPhone = res.data.hotelPhone;
       }
         // obj.setData({
         //   list_title: res.data.list,

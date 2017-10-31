@@ -19,6 +19,6 @@
 
   <view class='buttom_section'>
     <text style='color: #999;'>如有其它补充开票需求，请联系前台：</text>
-    <text style='color: #42AE3C;'>0755-88888888</text>
+    <text style='color: #42AE3C;'>{{hotelPhone}}</text>
   </view>
 </view>

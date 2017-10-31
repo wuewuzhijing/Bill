@@ -163,6 +163,7 @@ App({
     lists:[],
     hotelId:"",
     hotelName:"酒店名称5",
+    hotelPhone:"",
   },
    
 })
