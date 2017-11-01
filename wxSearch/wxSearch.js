@@ -1,5 +1,6 @@
 // 定义数据格式
 var util = require("../utils/util.js");
+var net = require("../utils/net.js");
 
 /***
  * 
@@ -191,6 +192,13 @@ function wxSearchKeyTap(e, that, callBack) {
   //当用户选择的是专票的时候再进行一次搜索
 
 
+  if (that.data.type == 1 && (info.address == null || info.address == "" )){
+      console.log(1111);
+      net.queryByName(info.headName,that);
+  }else{
+    console.log(2222);
+    
+  }
 
   if (typeof (callBack) == "function") {
       callBack();

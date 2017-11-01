@@ -40,7 +40,7 @@
             <!-- <button class="wxSearch-button" bindtap="wxSearchFn" size="mini" plain="true">导入微信抬头</button> -->
             <text class="addTitle-button" bindtap="importTitle" >导入抬头</text>
           </view>
-          <view class='searchDataList' bindtap="wxSearchTap" wx:if="{{wxSearchData.view.isShow}}">
+          <view class='searchDataList' wx:if="{{wxSearchData.view.isShow}}">
             <block wx:for="{{wxSearchData.mindKeys}}" wx:key="unique">
                 <view class="SearchMindKeyItem" bindtap="wxSearchKeyTap" data-key="{{item}}" data-index="{{index}}">{{item}}</view>
             </block>

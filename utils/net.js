@@ -20,6 +20,27 @@ function getUserTitleList(userid,obj) {
   })
 }
 
+function queryByName(headName, obj) {
+  util.getQuery('invoice/queryInvoiceHead',
+    { headName:headName, headType:"1", invoiceType:"2"},
+    "",
+    function success(res) {
+      if (res.data) {
+        console.log(res);
+        obj.setData({
+          headName: res.data.headName,
+          taxNo: res.data.taxNo,
+          address: res.data.address,
+          telephone: res.data.telephone,
+          bankName: res.data.bankName,
+          bankAccount: res.data.bankAccount,
+        });
+      }
+    }, function fail(res) {
+     
+    })
+}
+
 
 function getHotel(hotelid) {
   util.getQuery('hotel/getHotelSimpleInfoById',
@@ -42,4 +63,5 @@ function getHotel(hotelid) {
 module.exports = {
   getUserTitleList: getUserTitleList,  //获取用户的抬头列表
   getHotel: getHotel,                  //获取酒店信息
+  queryByName: queryByName,             //企业名称查询
 }
