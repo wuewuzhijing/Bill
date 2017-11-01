@@ -13,9 +13,8 @@ const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : '0' + n
 }
-
-// var rootDocment = 'https://dev.bookingyun.com/CenterMaster/';
-var rootDocment = 'https://dev.bookingyun.com/CenterMaster/';
+// var rootDocment = 'https://cm.bookingyun.com/CenterMaster/'; // 正式环境，相应的appid也需要修改
+var rootDocment = 'https://dev.bookingyun.com/CenterMaster/';   // 测试环境
 
 
 function getQuery(url, parms, message, success, fail) {

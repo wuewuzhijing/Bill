@@ -131,14 +131,19 @@ App({
   //获取用户的抬头列表
   getUserTitleList:function(userid){
     var that = this;
-    util.getQuery('invoice/getUserInvoiceHeads', {userId: userid}, "", function success(res) {
-      
-
-      if (res.data.list && res.data.list.length > 0){
-        console.log("获取抬头列表成功");
+    util.getQuery('invoice/getUserInvoiceHeads', {userId: userid}, "",
+     function success(res) {
+       console.log(res.data.list.length );
+       console.log(res);
+      if (res.data.list && res.data.list.length > 1){
           let list = JSON.stringify(res.data.list);
           wx.redirectTo({
             url: '../titleList/titleList?list=' + list
+          })
+        } else if (res.data.list && res.data.list.length == 1 ){
+          let info = JSON.stringify(res.data.list[0]);
+          wx.redirectTo({
+            url: '../addTitle/addTitle?type=1&info=' + info
           })
         }else{
           wx.redirectTo({
@@ -159,7 +164,7 @@ App({
 
   globalData: {
     userInfo: {userId:null},
-    openidParms: { appId:"wx73ca0044fd536511"},
+    openidParms: { appId:"wxe6882701df8ffd4b"},
     lists:[],
     hotelId:"",
     hotelName:"酒店名称5",

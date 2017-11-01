@@ -119,6 +119,11 @@ Page({
     WxSearch.wxSearchInput(e, that);
   },
 
+  wxSearchfocus:function(e){
+    var that = this
+    WxSearch.wxSearchfocus(e, that);
+  },
+
   wxSearchBlur: function (e) {
     var that = this
     WxSearch.wxSearchBlur(e, that);

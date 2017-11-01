@@ -68,7 +68,9 @@ function init(that){
 // }
 
 function wxSearchInput(e, that, callBack){
+  
     console.log(132);
+    console.log(e);
     var temData = that.data.wxSearchData;
     var text = e.detail.value;
     var mindKeys = [];
@@ -151,6 +153,14 @@ function wxSearchHiddenPancel(that){
     });
 }
 
+function wxSearchfocus(e,that) {
+  var temData = that.data.wxSearchData;
+  temData.view.isShow = false;
+  that.setData({
+    wxSearchData: temData
+  });
+}
+
 //模糊搜索item的点击事件
 function wxSearchKeyTap(e, that, callBack) {
   wxSearchHiddenPancel(that);
@@ -190,5 +200,6 @@ module.exports = {
   wxSearchInput: wxSearchInput,
   wxSearchBlur: wxSearchBlur,
   wxSearchKeyTap: wxSearchKeyTap,
-  wxSearchHiddenPancel:wxSearchHiddenPancel
+  wxSearchHiddenPancel:wxSearchHiddenPancel,
+  wxSearchfocus: wxSearchfocus,
 }
