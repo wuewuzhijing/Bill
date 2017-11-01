@@ -73,6 +73,10 @@ function getQuery(url, parms, message, success, fail) {
 
 // 发送请求日志到服务器
 function sendLog(type , logType, clientMethod, costTime, serviceName, url, contentIn, contentOut, contentException){
+
+  if (url.indexOf("queryInvoiceHeadsByKeyword") > -1) {  // 剔除掉模糊搜索的日志
+    return;
+  }
   var that = this;
 
   let serviceId = '';
