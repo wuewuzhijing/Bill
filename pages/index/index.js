@@ -18,7 +18,7 @@ Page({
      ],
     radioCheckVal: 0,
     type:1,
-    wx_host: 'https://dev.bookingyun.com/hotel_wx/rest/',
+    wx_host: 'https://dev.bookingyun.com/hotel_wx/rest/',  // 无用的参数，后续删除
     cm_host: 'https://dev.bookingyun.com/CenterMaster/'
   },
   //事件处理函数

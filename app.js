@@ -76,7 +76,7 @@ App({
     //   title: "正在登录",
     // });
     wx.request({
-      url: "https://dev.bookingyun.com/hotel_wx/rest/wxRest/getSNSUserInfoByEncryptedData",
+      url: "https://wx.bookingyun.com/hotel_wx/rest/wxRest/getSNSUserInfoByEncryptedData",
       method: 'GET',
       data: parms,
       isLoading: true,
@@ -105,7 +105,7 @@ App({
   getUserId: function (res){
     var that = this;
     wx.request({
-      url: "https://dev.bookingyun.com/CenterMaster/user/getUserByInvoiceOpenId",
+      url: "https://cm.bookingyun.com/CenterMaster/user/getUserByInvoiceOpenId",
       method: 'GET',
       data: { openIdInvoiceLittleApp: res.data.openId, nickname: res.data.nickname, avatar: res.data.avatarUrl},
       isLoading: true,
@@ -164,7 +164,7 @@ App({
 
   globalData: {
     userInfo: {userId:null},
-    openidParms: { appId:"wxe6882701df8ffd4b"},
+    openidParms: { appId:"wx73ca0044fd536511"},
     lists:[],
     hotelId:"",
     hotelName:"酒店名称5",
