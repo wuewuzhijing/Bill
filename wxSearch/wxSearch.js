@@ -188,6 +188,8 @@ function wxSearchKeyTap(e, that, callBack) {
     bankAccount: info.bankAccount,
   });
 
+  //当用户选择的是专票的时候再进行一次搜索
+
 
 
   if (typeof (callBack) == "function") {

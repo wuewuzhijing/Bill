@@ -202,7 +202,7 @@ Page({
       data.invoiceType = "1";
     }
 
-    console.log("开始提交");
+    //提交开票
     util.getQuery('invoice/intentInvoice' , data , "加载中" , function success(res){
       console.log(res);
       wx.showToast({

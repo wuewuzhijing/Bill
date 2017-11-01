@@ -54,6 +54,7 @@ App({
         that.globalData.userInfo = res.userInfo
         that.globalData.openidParms.encryptedData = res.encryptedData;
         that.globalData.openidParms.iv = res.iv;
+        that.globalData.openidParms.appId = util.appId;
 
         let info = JSON.stringify(that.globalData);
         console.log(info)
@@ -76,7 +77,7 @@ App({
     //   title: "正在登录",
     // });
     wx.request({
-      url: "https://wx.bookingyun.com/hotel_wx/rest/wxRest/getSNSUserInfoByEncryptedData",
+      url: util.getOpenIdUrl,
       method: 'GET',
       data: parms,
       isLoading: true,
@@ -104,16 +105,10 @@ App({
 //获取userid
   getUserId: function (res){
     var that = this;
-    wx.request({
-      url: "https://cm.bookingyun.com/CenterMaster/user/getUserByInvoiceOpenId",
-      method: 'GET',
-      data: { openIdInvoiceLittleApp: res.data.openId, nickname: res.data.nickname, avatar: res.data.avatarUrl},
-      isLoading: true,
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      success: function (res) {
-        console.log("获取userid成功" + res.data.userId)
+    util.getQuery('user/getUserByInvoiceOpenId',
+      { openIdInvoiceLittleApp: res.data.openId, nickname: res.data.nickname, avatar: res.data.avatarUrl }, "",
+      function success(res) {
+        console.log("获取userid成功")
         if (res.data.userId) {
           //获取用户的抬头列表 ， 如果有数据打开抬头列表页，没有数据就进入添加抬头页
           that.globalData.userInfo.userId = res.data.userId
@@ -121,11 +116,10 @@ App({
         }
         that.getUserTitleList(that.globalData.userInfo.userId );
       },
-      fail: function () {
-        console.log("获取userid")
+      function fail(res) {
+        console.log("获取userid失败")
         that.getDataFail();
-      }
-    })
+      })
   },
 
   //获取用户的抬头列表
@@ -164,7 +158,7 @@ App({
 
   globalData: {
     userInfo: {userId:null},
-    openidParms: { appId:"wx73ca0044fd536511"},
+    openidParms: {},
     lists:[],
     hotelId:"",
     hotelName:"酒店名称5",

@@ -36,7 +36,7 @@
       <view class='addTtile_eare'>
           <view class="{{type==2?'addTitle-pancelNoBoder':'addTitle-pancel'}}">
             <text class='conmm_text addTitle-text'>发票抬头</text>
-            <input bindinput="wxSearchInput" bindfocus="wxSearchfocus" name="headName" value="{{headName}}"  class="addTitle-input" placeholder-class="psection" placeholder="{{type==2?'个人/政府、事业单位名称':'单位名称'}}" />
+            <input bindinput="wxSearchInput" bindfocus="wxSearchfocus" name="headName" value="{{headName}}"  class="addTitle-input" placeholder-class="psection" placeholder="{{type==2?'个人/政府、事业单位名称':'单位名称（支持关键字搜索）'}}" />
             <!-- <button class="wxSearch-button" bindtap="wxSearchFn" size="mini" plain="true">导入微信抬头</button> -->
             <text class="addTitle-button" bindtap="importTitle" >导入抬头</text>
           </view>
@@ -96,6 +96,10 @@
         <input name="maill"   class="addTitle-input" placeholder-class="psection" placeholder="请输入邮箱" />
       </view>
     </view>
+  </view>
+
+  <view>
+    <text class="commit_tips" >提示：提交前请核实信息，搜索结果仅供参考</text>
   </view>
 
   <button class="conmm_button" type="primary" form-type='submit'> 提交 </button>

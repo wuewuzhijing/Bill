@@ -27,7 +27,7 @@ radio-group{
 
 .flex_item label.active2{  
   color: #333;  
-  border: 1px solid #333;  
+  border: 1px solid #ccc;  
   border-radius: 10rpx;
     
 }
@@ -64,7 +64,7 @@ radio-group{
 }
 
 .addTitle-text{
- width: 150rpx;
+ width: 120rpx;
 }
 
 .psection{
@@ -82,6 +82,14 @@ radio-group{
   border-left:1rpx solid #e2dfdf;
   padding-left:20rpx;
   color: #42AE3C;
+}
+
+.commit_tips{
+  display: flex;
+  justify-content: center;
+  color:#333;
+  font-size: 28rpx;
+  margin-top: 20rpx;
 }
 
 .addTtile_eare{
