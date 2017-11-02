@@ -70,8 +70,6 @@ function init(that){
 
 function wxSearchInput(e, that, callBack){
   
-    console.log(132);
-    console.log(e);
     var temData = that.data.wxSearchData;
     var text = e.detail.value;
     var mindKeys = [];
@@ -79,7 +77,6 @@ function wxSearchInput(e, that, callBack){
     util.getQuery('invoice/queryInvoiceHeadsByKeyword', { keyword: text}, "", 
     function success(res) {
       queryList = res.data.list;
-      console.log("获取title成功" + queryList.length);
       console.log(res);
       if (res.data.list && queryList.length> 0){
         for (var i = 0; i < queryList.length;i++){
@@ -146,7 +143,6 @@ function wxSearchBlur(e, that, callBack) {
 }
 
 function wxSearchHiddenPancel(that){
-  console.log("触发隐藏事件")
     var temData = that.data.wxSearchData;
     temData.view.isShow = false;
     that.setData({
@@ -189,14 +185,11 @@ function wxSearchKeyTap(e, that, callBack) {
     bankAccount: info.bankAccount,
   });
 
-  //当用户选择的是专票的时候再进行一次搜索
-
-
+  //当用户选择的是专票且信息不全的时候再进行一次搜索
   if (that.data.type == 1 && (info.address == null || info.address == "" )){
-      console.log(1111);
+      console.log('第二次查询');
       net.queryByName(info.headName,that);
   }else{
-    console.log(2222);
     
   }
 

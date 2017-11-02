@@ -25,7 +25,7 @@ function queryByName(headName, obj) {
     { headName:headName, headType:"1", invoiceType:"2"},
     "",
     function success(res) {
-      if (res.data) {
+      if (res.data.headName) {
         console.log(res);
         obj.setData({
           headName: res.data.headName,
